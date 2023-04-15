@@ -1,5 +1,4 @@
 export const init = function (canvas) {
-	console.log(canvas);
 	class CanvasBlob {
 		constructor(canvas) {
 			this.points = [];
@@ -224,14 +223,12 @@ export const init = function (canvas) {
 	}
 
 	const blob = new CanvasBlob(canvas);
-	console.log(blob);
 
 	canvas.setAttribute('touch-action', 'none');
 
 	let resize = function () {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-		console.log(canvas.width, canvas.height);
 	};
 	window.addEventListener('resize', resize);
 	resize();
@@ -239,6 +236,7 @@ export const init = function (canvas) {
 	let oldMousePoint = { x: 0, y: 0 };
 	let hover = false;
 	let mouseMove = function (e) {
+		e = { clientX: e.clientX, clientY: e.clientY - canvas.getBoundingClientRect().top}
 		let pos = blob.center;
 		let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y };
 		let dist = Math.sqrt(diff.x * diff.x + diff.y * diff.y);
@@ -264,7 +262,6 @@ export const init = function (canvas) {
 
 			blob.points.forEach((point) => {
 				if (Math.abs(angle - point.azimuth) < distanceFromPoint) {
-					// console.log(point.azimuth, angle, distanceFromPoint);
 					nearestPoint = point;
 					distanceFromPoint = Math.abs(angle - point.azimuth);
 				}

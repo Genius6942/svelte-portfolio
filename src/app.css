@@ -13,3 +13,8 @@ body {
 .bungee {
   font-family: 'Bungee Shade', cursive;
 }
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  transition: all .2s ease;
+}

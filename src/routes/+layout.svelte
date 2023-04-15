@@ -51,9 +51,9 @@
 	});
 </script>
 
-<div class="h-screen w-screen overflow-hidden flex flex-col">
-	<div class="px-5 py-[11px] flex items-center shadow-sm border-b-2 border-b-gray-200">
-		<a href="/">Website Name</a>
+<div class="h-screen w-screen overflow-hidden flex flex-col text-white">
+	<div class="px-5 py-[11px] flex items-center shadow-sm border-b-2 border-b-gray-600 bg-gray-800" id="header">
+		<a href="/">Joshua Liu</a>
 		<div class="ml-auto flex gap-3 relative" bind:this={navContainerRef}>
 			{#each links as link}
 				<a href={link.href} class="ml-3" bind:this={link.ref}>
@@ -61,7 +61,7 @@
 				</a>
 			{/each}
 			<div
-				class="h-1 absolute -bottom-3 bg-black rounded-full transition-all"
+				class="h-1 absolute -bottom-3 bg-white rounded-full transition-all"
 				style={navBottomLeft !== null && navBottomWidth !== null
 					? `width: ${navBottomWidth}px; left: ${navBottomLeft}px; opacity: 1;`
 					: 'width: 0; left: 0; opacity: 0'}
@@ -75,7 +75,7 @@
 			{/each}
 		</div>
 	</div>
-	<main class="flex-grow overflow-auto">
+	<main class="flex-grow overflow-y-auto overflow-x-hidden bg-gray-700" id="main">
 		<slot />
 	</main>
 </div>
