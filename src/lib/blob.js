@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export const init = function (canvas) {
 	class CanvasBlob {
 		constructor(canvas) {
@@ -22,6 +24,7 @@ export const init = function (canvas) {
 			let points = this.numPoints;
 			let divisional = this.divisional;
 			let center = this.center;
+			const dy = -100;
 
 			const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
 			grd.addColorStop(0.4, '#40204c');
@@ -65,15 +68,8 @@ export const init = function (canvas) {
 			ctx.fillStyle = this.color;
 			ctx.fill();
 			ctx.strokeStyle = '#000000';
-			// ctx.stroke();
+			ctx.stroke();
 
-			/*
-      ctx.fillStyle = '#000000';
-      if(this.mousePos) {
-        let angle = Math.atan2(this.mousePos.y, this.mousePos.x) + Math.PI;
-        ctx.fillRect(center.x + Math.cos(angle) * this.radius, center.y + Math.sin(angle) * this.radius, 5, 5);
-      }
-  */
 			requestAnimationFrame(this.render.bind(this));
 		}
 
@@ -236,7 +232,7 @@ export const init = function (canvas) {
 	let oldMousePoint = { x: 0, y: 0 };
 	let hover = false;
 	let mouseMove = function (e) {
-		e = { clientX: e.clientX, clientY: e.clientY - canvas.getBoundingClientRect().top}
+		e = { clientX: e.clientX, clientY: e.clientY - canvas.getBoundingClientRect().top };
 		let pos = blob.center;
 		let diff = { x: e.clientX - pos.x, y: e.clientY - pos.y };
 		let dist = Math.sqrt(diff.x * diff.x + diff.y * diff.y);
@@ -284,6 +280,8 @@ export const init = function (canvas) {
 	blob.canvas = canvas;
 	blob.init();
 	blob.render();
+
+	return blob;
 };
 
 // init(document.body.appendChild(document.createElement('canvas')));
