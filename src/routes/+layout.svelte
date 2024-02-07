@@ -54,7 +54,9 @@
 	// bg thingy
 	let canvasRef = null as unknown as HTMLCanvasElement;
 	onMount(() => {
+		const destroy =
 		initBG(canvasRef);
+		return destroy;
 	});
 </script>
 
