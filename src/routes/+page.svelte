@@ -60,15 +60,12 @@
       <div class="bg-white rounded-full w-5 h-2" />
     </div>
     <!-- svelte-ignore a11y-img-redundant-alt -->
-    <img
-      src="/assets/hippo.png"
-      alt="image of me"
-      class="rounded-full"
-    />
+    <img src="/assets/hippo.png" alt="image of me" width="200" height="200" class="rounded-full" />
   </Fader>
   <Fader className="flex gap-10 items-center">
-    <!-- svelte-ignore a11y-img-redundant-alt -->
-    <div class="rounded-full bg-slate-800 w-36 h-36" />
+    <div>
+      <div class="rounded-full bg-slate-800 w-36 h-36" />
+    </div>
 
     <div class="flex gap-2 opacity-60">
       <div class="bg-white rounded-full w-5 h-2" />

@@ -15,22 +15,24 @@ export const initBG = (canvas: HTMLCanvasElement) => {
     mousePos.y = e.clientY;
   });
 
+  const scale = window.innerWidth / 1350;
   const gravity = -1;
-  const initialSpeed = 0.7;
+  const initialSpeed = 0.5;
+  const exitMargin = 150;
 
   const dots: { x: number; y: number; r: number; vx: number; vy: number }[] = [];
-  const numDots = 200;
+  const numDots = 200 * scale;
   for (let i = 0; i < numDots; i++) {
     dots.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: 5,
+      r: 5 * scale,
       vx: Math.random() * initialSpeed - initialSpeed / 2,
       vy: Math.random() * initialSpeed - initialSpeed / 2
     });
   }
 
-  const connectionDistance = 150;
+  const connectionDistance = scale * 150;
 
   let looping = true;
   const render = () => {
@@ -83,10 +85,10 @@ export const initBG = (canvas: HTMLCanvasElement) => {
 
       dot.x += dot.vx;
       dot.y += dot.vy;
-      if (dot.x + dot.r < 0) dot.x = canvas.width + dot.r;
-      if (dot.x - dot.r > canvas.width) dot.x = -dot.r;
-      if (dot.y + dot.r < 0) dot.y = canvas.height + dot.r;
-      if (dot.y - dot.r > canvas.height) dot.y = -dot.r;
+      if (dot.x + dot.r + exitMargin < 0) dot.x = canvas.width + dot.r + exitMargin;
+      if (dot.x - dot.r - exitMargin > canvas.width) dot.x = -dot.r - exitMargin;
+      if (dot.y + dot.r + exitMargin < 0) dot.y = canvas.height + dot.r + exitMargin;
+      if (dot.y - dot.r - exitMargin > canvas.height) dot.y = -dot.r - exitMargin;
       ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
