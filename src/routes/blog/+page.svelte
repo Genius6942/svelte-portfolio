@@ -1,4 +1,6 @@
 <script lang="ts">
 </script>
 
-<div class="rounded-3xl bg-slate-800 bg-opacity-90 p-5">Haelp's Blog</div>
+<div class="rounded-3xl bg-slate-800 bg-opacity-90 p-5 text-6xl firacode text-center font-bold">
+  haelp blog
+</div>

@@ -21,7 +21,7 @@
 
   const icons = [
     { name: "Github", href: "https://github.com/genius6942", icon: faGithub },
-    { name: "Email", href: "mailto:mathmanjosh@gmail.com", icon: faEnvelope }
+    { name: "Email", href: "mailto:haelpf@gmail.com", icon: faEnvelope }
   ];
 
   let route = null as unknown as string;
@@ -108,7 +108,10 @@
   </div>
   <main class="flex-grow overflow-y-auto overflow-x-hidden bg-gray-700" id="main">
     <canvas bind:this={canvasRef} class="absolute top-0 left-0" id="background" />
-    <div class="z-10 relative h-full">
+    <div
+      class={"z-10 relative h-full " +
+        ($page.url.pathname.replaceAll("/", "") === "" ? "" : "backdrop-blur-md")}
+    >
       <slot />
     </div>
   </main>

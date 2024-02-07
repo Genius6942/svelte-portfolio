@@ -16,7 +16,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
   });
 
   const scale = window.innerWidth / 1350;
-  const gravity = -1;
+  const gravity = -2;
   const initialSpeed = 0.5;
   const exitMargin = 150;
 

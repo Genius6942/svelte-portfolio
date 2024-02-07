@@ -30,6 +30,7 @@
 		"@fortawesome/free-brands-svg-icons": "^6.3.0",
 		"@fortawesome/free-solid-svg-icons": "^6.3.0",
 		"@zerodevx/svelte-img": "^1.2.10",
+		"mongodb": "^6.3.0",
 		"sharp": "^0.33.2",
 		"svelte-fa": "^3.0.3",
 		"svelte-typewriter": "^3.1.4"
