@@ -1,13 +1,9 @@
-import {
-  MongoClient,
-  ServerApiVersion,
-  ObjectId
-} from "mongodb";
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
 import type { OptionalId, Document, WithId, Filter } from "mongodb";
 // Replace the placeholder with your Atlas connection string
 const uri = process.env.MONGODB_URI!;
 
-const database = process.env.MODE === "production" ? "prod" : "dev";
+export const database = import.meta.env.DEV ? "dev" : "prod";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // @ts-ignore
@@ -18,6 +14,28 @@ const client = new MongoClient(uri, {
     deprecationErrors: true
   }
 });
+
+let clientPromise: Promise<MongoClient>;
+
+if (process.env.NODE_ENV === "development") {
+  // In development mode, use a global variable so that the value
+  // is preserved across module reloads caused by HMR (Hot Module Replacement).
+  // @ts-ignore
+  if (!global._mongoClientPromise) {
+    // @ts-ignore
+    global._mongoClientPromise = client.connect();
+  }
+  // @ts-ignore
+  clientPromise = global._mongoClientPromise;
+} else {
+  // In production mode, it's best to not use a global variable.
+  clientPromise = client.connect();
+}
+
+// Export a module-scoped MongoClient promise. By doing this in a
+// separate module, the client can be shared across functions.
+export { clientPromise as dbClient };
+
 let connecting: boolean | Promise<MongoClient> = true;
 
 (async () => {

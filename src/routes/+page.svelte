@@ -1,10 +1,10 @@
 <script lang="ts">
   // @ts-ignore
-  import Fa from "svelte-fa/src/fa.svelte";
+  import Fa from "svelte-fa";
   import Fader from "$lib/FadeWrapper.svelte";
   import { onMount } from "svelte";
   import { init } from "$lib/blob.js";
-  import Typewriter from "svelte-typewriter/Typewriter.svelte";
+  import Typewriter from "svelte-typewriter";
   import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
   let canvasRef = null as unknown as HTMLCanvasElement;
 

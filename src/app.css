@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -10,15 +10,34 @@ body {
   height: 100vh;
 }
 
-
 .bungee {
-  font-family: 'Bungee Shade', cursive;
+  font-family: "Bungee Shade", cursive;
 }
 .firacode {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar {
+  appearance: none;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(15 23 42);
+  margin: 2px;
+  width: 8px;
+  border-radius: 8px;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(0 0 0 / 20%);
 }

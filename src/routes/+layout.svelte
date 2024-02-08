@@ -2,10 +2,8 @@
   import "../app.css";
   import { page } from "$app/stores";
   import { onMount } from "svelte";
-  import { fly } from "svelte/transition";
 
-  // @ts-ignore
-  import Fa from "svelte-fa/src/fa.svelte";
+  import Fa from "svelte-fa";
 
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
   import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -98,23 +96,32 @@
           : "width: 0; left: 0; opacity: 0"}
       />
     </div>
-    <div class="mr-3 flex gap-4 ml-8">
+    <div class="mr-2 flex items-center gap-4 ml-8">
       {#each icons as icon}
         <a href={icon.href} target="_blank">
           <Fa icon={icon.icon} scale={1.1} />
         </a>
       {/each}
+      {#if $page.data.session && $page.data.session.user}
+        <div class="relative">
+          <img src={$page.data.session.user.image} class="w-6 h-6 rounded-full" alt="profile" />
+        </div>
+      {/if}
     </div>
   </div>
-  <main class="flex-grow overflow-y-auto overflow-x-hidden bg-gray-700" id="main">
-    <canvas bind:this={canvasRef} class="absolute top-0 left-0" id="background" />
+  <div class="flex-grow overflow-y-auto overflow-x-hidden bg-gray-700" id="main">
+    <canvas
+      bind:this={canvasRef}
+      class="absolute top-0 left-0 pointer-events-none"
+      id="background"
+    />
     <div
       class={"z-10 relative h-full " +
         ($page.url.pathname.replaceAll("/", "") === "" ? "" : "backdrop-blur-md")}
     >
       <slot />
     </div>
-  </main>
+  </div>
 </div>
 
 <style>
