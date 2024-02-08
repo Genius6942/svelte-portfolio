@@ -6,7 +6,7 @@
   import Fa from "svelte-fa";
 
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
-  import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+  import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
   import { initBG } from "$lib/bg";
 
   const links: { name: string; href: string; ref: null | HTMLAnchorElement }[] = [
@@ -79,7 +79,7 @@
 
 <div class="h-screen w-screen overflow-hidden flex flex-col text-white">
   <div
-    class="px-5 py-[11px] flex items-center shadow-sm border-b-2 border-b-gray-600 bg-gray-800 z-10"
+    class="px-5 py-[11px] flex items-center shadow-sm border-b-2 border-b-gray-600 bg-gray-800 z-50"
     id="header"
   >
     <a href="/" class="">HAELP</a>
@@ -103,8 +103,19 @@
         </a>
       {/each}
       {#if $page.data.session && $page.data.session.user}
-        <div class="relative">
+        <div class="relative z-10">
           <img src={$page.data.session.user.image} class="w-6 h-6 rounded-full" alt="profile" />
+          <div
+            class="absolute top-full right-0 mt-4 flex flex-col items-stretch bg-slate-900 rounded-2xl z-50"
+          >
+            <button class="whitespace-nowrap px-5 pt-3 pb-1 cursor-pointer hover:bg-slate-700"
+              >Account</button
+            >
+            <div class="border-b-[1px] border-[#ffffff30]"></div>
+            <button class="whitespace-nowrap px-5 py-2 cursor-pointer hover:bg-slate-700"
+              >Log out</button
+            >
+          </div>
         </div>
       {/if}
     </div>
