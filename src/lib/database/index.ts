@@ -1,7 +1,8 @@
+import { MONGODB_URI } from "$env/static/private";
 import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
 import type { OptionalId, Document, WithId, Filter } from "mongodb";
 // Replace the placeholder with your Atlas connection string
-const uri = process.env.MONGODB_URI!;
+const uri = MONGODB_URI;
 
 export const database = import.meta.env.DEV ? "dev" : "prod";
 

@@ -1,5 +1,4 @@
-<script>
-  import { SignIn, SignOut } from "@auth/sveltekit/components";
+<script lang="ts">
   import { signIn } from "@auth/sveltekit/client";
   import { page } from "$app/stores";
   console.log($page.data.session);
@@ -34,22 +33,3 @@
     {/if}
   </div>
 </main>
-
-<p>
-  {#if $page.data.session}
-    {#if $page.data.session.user?.image}
-      <div
-        style="background-image: url('{$page.data.session.user.image}')"
-        class="w-10 h-10 bg-cover bg-no-repeat rounded-full"
-      />
-    {/if}
-    <span class="signedInText">
-      <small>Signed in as</small><br />
-      <strong>{$page.data.session.user?.name ?? "User"}</strong>
-    </span>
-    <SignOut />
-  {:else}
-    <span class="notSignedInText">You are not signed in</span>
-    <SignIn provider="github" />
-  {/if}
-</p>

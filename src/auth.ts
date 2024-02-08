@@ -1,6 +1,6 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
 import GitHub from "@auth/sveltekit/providers/github";
-import { GITHUB_ID, GITHUB_SECRET } from "$env/static/private";
+import { AUTH_URL, GITHUB_ID, GITHUB_SECRET, GP } from "$env/static/private";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { dbClient, database as databaseName } from "$lib/database";
 
@@ -10,7 +10,13 @@ const adapter = MongoDBAdapter(dbClient, {
 
 export const { handle, signIn, signOut } = SvelteKitAuth({
   adapter,
-  providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })],
+  providers: [
+    GitHub({
+      clientId: GITHUB_ID,
+      clientSecret: GITHUB_SECRET,
+      redirectProxyUrl: GP === '1' ? "https://5173-genius6942-svelteportfo-c7i3puajt6w.ws-us108.gitpod.io/auth" : undefined
+    })
+  ],
   callbacks: {
     session({ session, trigger, user, newSession }) {
       if (session?.user) {
@@ -33,5 +39,21 @@ export const { handle, signIn, signOut } = SvelteKitAuth({
 
       return session;
     }
-  }
+  },
+  cookies:
+    GP === '1'
+      ? {
+          sessionToken: {
+            name: "next-auth.session-token",
+            options: {
+              domain: "5173-genius6942-svelteportfo-c7i3puajt6w.ws-us108.gitpod.io",
+              path: "/",
+              httpOnly: true,
+              sameSite: "lax",
+              secure: false
+            }
+          }
+        }
+      : undefined
 });
+
