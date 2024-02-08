@@ -19,6 +19,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
   const gravity = -2;
   const initialSpeed = 0.5;
   const exitMargin = 150;
+  const mousePower = 1 / 20;
 
   const dots: { x: number; y: number; r: number; vx: number; vy: number }[] = [];
   const numDots = 200 * scale;
@@ -71,7 +72,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
       const dy = dot.y - mousePos.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       if (distance < 100) {
-        const force = (100 - distance) / 200;
+        const force = ((100 - distance) / 100) * mousePower;
         dot.vx += dx * force * 0.01;
         dot.vy += dy * force * 0.01;
       }

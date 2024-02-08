@@ -1,7 +1,6 @@
 <script lang="ts">
   import { signIn } from "@auth/sveltekit/client";
   import { page } from "$app/stores";
-  console.log($page.data.session);
 </script>
 
 <main class="flex h-full w-full justify-center items-center">

@@ -6,7 +6,7 @@
   import Fa from "svelte-fa";
 
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
-  import { faEnvelope, faUser } from "@fortawesome/free-solid-svg-icons";
+  import { faEnvelope, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
   import { initBG } from "$lib/bg";
 
   const links: { name: string; href: string; ref: null | HTMLAnchorElement }[] = [
@@ -75,6 +75,30 @@
       });
     });
   });
+
+  let menuOpen = false;
+
+  onMount(() => {
+    const keyListener = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        menuOpen = false;
+      }
+    };
+
+    const clickListener = () => {
+      if (menuOpen) {
+        menuOpen = false;
+      }
+    };
+
+    document.addEventListener("keydown", keyListener);
+    document.addEventListener("click", clickListener);
+
+    return () => {
+      document.removeEventListener("keydown", keyListener);
+      document.removeEventListener("click", clickListener);
+    };
+  });
 </script>
 
 <div class="h-screen w-screen overflow-hidden flex flex-col text-white">
@@ -103,19 +127,39 @@
         </a>
       {/each}
       {#if $page.data.session && $page.data.session.user}
-        <div class="relative z-10">
-          <img src={$page.data.session.user.image} class="w-6 h-6 rounded-full" alt="profile" />
-          <div
-            class="absolute top-full right-0 mt-4 flex flex-col items-stretch bg-slate-900 rounded-2xl z-50"
+        <div class="relative z-10 h-6 w-6">
+          <button
+            class="w-6 h-6 rounded-full"
+            on:click={(e) => {
+              menuOpen = !menuOpen;
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              e.stopPropagation();
+            }}
           >
-            <button class="whitespace-nowrap px-5 pt-3 pb-1 cursor-pointer hover:bg-slate-700"
-              >Account</button
+            <img src={$page.data.session.user.image} alt="profile" class="rounded-full" />
+          </button>
+          {#if menuOpen}
+            <div
+              class="absolute top-full right-0 mt-4 flex flex-col items-stretch bg-slate-900 rounded-2xl z-50"
             >
-            <div class="border-b-[1px] border-[#ffffff30]"></div>
-            <button class="whitespace-nowrap px-5 py-2 cursor-pointer hover:bg-slate-700"
-              >Log out</button
-            >
-          </div>
+              <a
+                href="/account"
+                class="whitespace-nowrap px-3 py-2 cursor-pointer hover:bg-slate-700 flex items-center"
+              >
+                <Fa icon={faUser} class="mr-2" />
+                Account
+              </a>
+              <div class="border-b-[1px] border-[#ffffff30]"></div>
+              <a
+                href="/logout"
+                class="whitespace-nowrap px-3 py-2 cursor-pointer hover:bg-slate-700 flex items-center"
+              >
+                <Fa icon={faSignOut} class="mr-2" />
+                Log out
+              </a>
+            </div>
+          {/if}
         </div>
       {/if}
     </div>
