@@ -4,7 +4,13 @@ import { error } from "@sveltejs/kit";
 import { ObjectId } from "mongodb";
 import type { BlogPost } from "$lib/types";
 
-export const load = async ({ params }) => {
+export const load = async ({ params, locals }) => {
+  const session = await locals.auth();
+
+  if (!session || !session.user || session.user.type !== "admin") {
+    error(403, "Forbidden");
+  }
+
   if (!params.postID || params.postID.length !== 24) {
     error(404, { message: "blog post not found :(" });
   }
@@ -16,6 +22,6 @@ export const load = async ({ params }) => {
   }
 
   return {
-    post: transformID(data[0] as any)
+    post: transformID(data[0])
   };
 };

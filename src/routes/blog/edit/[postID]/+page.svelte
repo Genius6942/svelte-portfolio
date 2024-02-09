@@ -3,18 +3,12 @@
   import { commonmark } from "@milkdown/preset-commonmark";
 
   import { history } from "@milkdown/plugin-history";
+  import { clipboard } from "@milkdown/plugin-clipboard";
+  import { prism } from "@milkdown/plugin-prism";
+  import { indent } from "@milkdown/plugin-indent";
+  import { upload } from "@milkdown/plugin-upload";
+
   import { nord } from "@milkdown/theme-nord";
-
-  // You should import these predefined prosemirror css styles.
-  // import "prosemirror-view/style/prosemirror.css";
-
-  // // If you need to style tables, you should import this css file.
-  // import "prosemirror-tables/style/tables.css";
-
-  // // Your css file.
-  // // import "./milkdown.css";
-
-  // // Your config.
 
   const markdown = `# Hello, Milkdown!`;
 
@@ -38,6 +32,10 @@
       // })
       .use(commonmark)
       .use(history)
+      .use(clipboard)
+      .use(prism)
+      .use(indent)
+      .use(upload)
       .create();
 
     editr.then((e) => {
@@ -46,11 +44,8 @@
   };
 </script>
 
-<div class="bg-slate-800 bg-opacity-90 p-20 rounded-3xl">
+<div class="bg-slate-800 bg-opacity-90 p-20 rounded-3x w-full relative">
   <h1 class="text-4xl firacode mb-5 text-center">Edit Post</h1>
 
-  <div
-    use:domEditor
-    class="prose prose-invert prose-slate outline-none w-full max-w-full box-border overflow-hidden p-4"
-  ></div>
+  <div use:domEditor class="outline-none w-full max-w-full box-border overflow-hidden p-4"></div>
 </div>

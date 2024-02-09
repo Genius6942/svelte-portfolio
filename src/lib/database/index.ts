@@ -86,7 +86,7 @@ export const remove = async (collection: string, search: any) => {
   return !!res.deletedCount;
 };
 
-export const transformID = <T extends { _id: ObjectId }>(object: T) => {
+export const transformID = <T>(object: WithId<T>) => {
   return { ...object, _id: object._id.toString() } as Omit<T, "_id"> & {
     _id: string;
   };

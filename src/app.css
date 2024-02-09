@@ -41,3 +41,25 @@ body {
 ::-webkit-scrollbar-track {
   background: rgb(0 0 0 / 20%);
 }
+
+.milkdown h1 {
+  color: white !important;
+}
+.milkdown h2 {
+  color: white !important;
+}
+.milkdown h3 {
+  color: white !important;
+}
+.milkdown h4 {
+  color: white !important;
+}
+.milkdown h5 {
+  color: white !important;
+}
+.milkdown h6 {
+  color: white !important;
+}
+.milkdown p {
+  color: white !important;
+}

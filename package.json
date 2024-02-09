@@ -43,6 +43,10 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.3.3",
-    "@auth/sveltekit": "^0.12.3"
+    "@auth/sveltekit": "^0.12.3",
+    "@milkdown/plugin-clipboard": "^7.3.3",
+    "@milkdown/plugin-indent": "^7.3.3",
+    "@milkdown/plugin-prism": "^7.3.3",
+    "@milkdown/plugin-upload": "^7.3.3"
   }
 }
