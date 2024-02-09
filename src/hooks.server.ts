@@ -7,12 +7,12 @@ declare module "@auth/core/types" {
   interface Session {
     user: {
       name: string;
-			email: string;
+      email: string;
       image: string;
-      type?: string;
+      type?: "admin";
     };
   }
   interface User {
-    type?: string;
+    type?: "admin";
   }
 }

@@ -1,7 +1,9 @@
 <script lang="ts">
+  import Fa from "svelte-fa";
+  import { faAdd } from "@fortawesome/free-solid-svg-icons";
 </script>
 
-<main class="flex w-full p-20 gap-5 items-stretch">
+<main class="flex w-full p-20 gap-5 items-stretch relative">
   <!-- main content -->
   <div class="flex-grow relative">
     <slot />
@@ -45,7 +47,7 @@
     </div>
 
     <!-- recent posts -->
-    <div class="bg-slate-800 rounded-3xl px-5 py-3">
+    <div class="bg-slate-800 rounde`qd-3xl px-5 py-3">
       <h1 class="text-xl mb-2">Recent Posts</h1>
       <div class="flex flex-col gap-2">
         <!-- svelte-ignore a11y-invalid-attribute -->
@@ -61,4 +63,10 @@
       </div>
     </div>
   </div>
+  <a
+    href="/blog/new"
+    class="absolute bottom-6 right-4 w-12 h-12 rounded-full bg-slate-600 flex items-center justify-center cursor-pointer hover:bg-slate-500 transition-all duration-300"
+  >
+    <Fa icon={faAdd} />
+  </a>
 </main>

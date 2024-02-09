@@ -10,13 +10,12 @@ export const load = async ({ params }) => {
   }
 
   const data = await query<BlogPost>("blog", { _id: new ObjectId(params.postID) });
-	console.log(data);
 
   if (data.length <= 0) {
     error(404, { message: "blog post not found :(" });
   }
 
   return {
-    post: data[0]
+    post: transformID(data[0] as any)
   };
 };
