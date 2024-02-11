@@ -48,7 +48,13 @@
     bg = initBG(canvasRef);
 
     // @ts-ignore
-    if (!import.meta.env.DEV && typeof eruda !== "undefined") eruda.destroy();
+    if (
+      !import.meta.env.DEV &&
+      typeof eruda !== "undefined" &&
+      eruda._devTools &&
+      eruda._devTools.destroy
+    )
+      eruda.destroy();
 
     return bg?.destroy;
   });
