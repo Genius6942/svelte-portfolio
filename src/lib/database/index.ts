@@ -1,6 +1,7 @@
 import { MONGODB_URI } from "$env/static/private";
-import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
-import type { OptionalId, Document, WithId, Filter } from "mongodb";
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
+import type { Document, Filter, OptionalId, WithId } from "mongodb";
+
 // Replace the placeholder with your Atlas connection string
 const uri = MONGODB_URI;
 
@@ -60,7 +61,7 @@ export const query = async <T = any>(
     .toArray()) as WithId<T>[];
 };
 
-export const update = async <T = any>(collection: string, query: any, update: any) => {
+export const update = async <T = any>(collection: string, query: any, update: any): Promise<T> => {
   if (connecting) await connecting;
   return (await client.db(database).collection(collection).updateOne(query, update)) as T;
 };

@@ -1,9 +1,26 @@
 {
-	"useTabs": false,
-	"singleQuote": false,
-	"trailingComma": "none",
-	"printWidth": 100,
-	"plugins": ["prettier-plugin-svelte"],
-	"pluginSearchDirs": ["."],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "useTabs": false,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "printWidth": 100,
+  "plugins": [
+    "prettier-plugin-svelte",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "pluginSearchDirs": ["."],
+  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }],
+  "importOrder": [
+    "svelte",
+    "$app/(.*)$",
+    "^svelte/(.*)$",
+    "^@milkdown/(.*)$",
+    "svelte-fa",
+    "@fortawesome/(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^$lib/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

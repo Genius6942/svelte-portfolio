@@ -1,5 +1,5 @@
 .milkdown-theme-haelp blockquote {
-  @apply not-italic font-serif border-l-4 border-nord10 pl-4;
+  @apply border-nord10 border-l-4 pl-4 font-serif not-italic;
 }
 
 .milkdown-theme-haelp code {
@@ -11,7 +11,7 @@
 }
 
 .milkdown-theme-haelp img {
-  @apply max-w-full !my-0 inline-block;
+  @apply !my-0 inline-block max-w-full;
 }
 
 .milkdown-theme-haelp.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
@@ -36,16 +36,16 @@
 }
 
 .milkdown-theme-haelp.prose .tableWrapper {
-  @apply mb-2 overflow-x-auto relative;
+  @apply relative mb-2 overflow-x-auto;
 }
 
 .milkdown-theme-haelp.prose table {
-  @apply text-sm shadow-md sm:rounded-lg !overflow-visible !m-4;
+  @apply !m-4 !overflow-visible text-sm shadow-md sm:rounded-lg;
 }
 
 .milkdown-theme-haelp.prose td,
 .milkdown-theme-haelp.prose th {
-  @apply !py-3 !px-6;
+  @apply !px-6 !py-3;
 }
 
 .milkdown-theme-haelp.prose tr {

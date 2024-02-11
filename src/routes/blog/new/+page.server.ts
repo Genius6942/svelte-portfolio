@@ -1,6 +1,7 @@
+import { error, redirect } from "@sveltejs/kit";
+
 import { insert } from "$lib/database";
 import type { BlogPost } from "$lib/types";
-import { error, redirect } from "@sveltejs/kit";
 
 export const load = async ({ locals }) => {
   const session = await locals.auth();
@@ -12,7 +13,9 @@ export const load = async ({ locals }) => {
     title: "(Untitled Post)",
     content: "",
     published: false,
-    timestamp: new Date()
+    timestamp: new Date(),
+    author: session.user.name,
+    tags: []
   };
 
   const { insertedId } = await insert("blog", data);

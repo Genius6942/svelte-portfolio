@@ -1,2 +1,1 @@
-yeah im a person
-not much more ig
+yeah im a person not much more ig

@@ -1,9 +1,9 @@
 <script lang="ts">
   // @ts-ignore
   import Fa from "svelte-fa";
-  import Fader from "$lib/FadeWrapper.svelte";
+  import Fader from "$lib/components/FadeWrapper.svelte";
   import { onMount } from "svelte";
-  import { init } from "$lib/blob.js";
+  import { init } from "$lib/animations/blob";
   import Typewriter from "svelte-typewriter";
   import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
   let canvasRef = null as unknown as HTMLCanvasElement;
@@ -21,20 +21,20 @@
   const scrollDown = () => firstItemRef.scrollIntoView({ behavior: "smooth" });
 </script>
 
-<div class="h-screen relative">
+<div class="relative h-screen">
   <canvas bind:this={canvasRef} class="-mt-6" />
   <div
-    class="h-screen w-screen absolute top-0 left-0 flex items-center justify-center pointer-events-none"
+    class="pointer-events-none absolute left-0 top-0 flex h-screen w-screen items-center justify-center"
     style="--cursor-width: 4px; --cursor-color: #fff;"
   >
-    <div class="text-white text-4xl">
+    <div class="text-4xl text-white">
       <Typewriter interval={100}>
-        hi, i'm <span class="text-6xl bungee">HAELP</span>
+        hi, i'm <span class="bungee text-6xl">HAELP</span>
       </Typewriter>
     </div>
   </div>
   <button
-    class="absolute left-1/2 -translate-x-1/2 top-[80%] text-white flex justify-center flex-col items-center gap-[2px] hover:gap-[5px] hover:font-bold cursor-pointer"
+    class="absolute left-1/2 top-[80%] flex -translate-x-1/2 cursor-pointer flex-col items-center justify-center gap-[2px] text-white hover:gap-[5px] hover:font-bold"
     on:click={scrollDown}
   >
     Lets see some stuff
@@ -42,7 +42,7 @@
   </button>
 </div>
 
-<div class="relative p-20 flex flex-col gap-20">
+<div class="relative flex flex-col gap-20 p-20">
   <Fader className="flex items-center gap-10">
     <div class="flex-grow rounded-3xl bg-slate-800 bg-opacity-90 p-5" bind:this={firstItemRef}>
       <h1 class="text-2xl">Hi! I'm a person!!!!</h1>
@@ -52,28 +52,28 @@
     </div>
 
     <div class="flex gap-2 opacity-60">
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
     </div>
     <!-- svelte-ignore a11y-img-redundant-alt -->
     <img src="/assets/hippo.png" alt="image of me" width="200" height="200" class="rounded-full" />
   </Fader>
   <Fader className="flex gap-10 items-center">
     <div>
-      <div class="rounded-full bg-slate-800 w-36 h-36" />
+      <div class="h-36 w-36 rounded-full bg-slate-800" />
     </div>
 
     <div class="flex gap-2 opacity-60">
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
-      <div class="bg-white rounded-full w-5 h-2" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
+      <div class="h-2 w-5 rounded-full bg-white" />
     </div>
     <div class="flex-grow rounded-3xl bg-slate-800 bg-opacity-90 p-5">
       <h1 class="text-2xl">View my blog</h1>

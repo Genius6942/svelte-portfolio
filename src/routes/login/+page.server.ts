@@ -7,5 +7,5 @@ export const load = async (params) => {
     redirect(302, "/");
   }
 
-	return {};
+  return {};
 };

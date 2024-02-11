@@ -1,5 +1,6 @@
-import { query } from "$lib/database";
 import { error } from "@sveltejs/kit";
+
+import { query } from "$lib/database";
 import { ObjectId } from "mongodb";
 
 export const load = async ({ params }) => {

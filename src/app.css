@@ -21,7 +21,16 @@ body {
 ::before,
 ::after {
   box-sizing: border-box;
+}
+
+*:not(input),
+::before,
+::after {
   transition: all 0.2s ease;
+}
+
+*:focus-visible {
+  outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -61,5 +70,24 @@ body {
   color: white !important;
 }
 .milkdown p {
+  color: white !important;
+}
+.milkdown a {
+  color: white !important;
+  text-decoration: underline;
+}
+.milkdown strong {
+  color: white !important;
+}
+.milkdown em {
+  color: white !important;
+}
+.milkdown ul {
+  color: white !important;
+}
+.milkdown ol {
+  color: white !important;
+}
+.milkdown li {
   color: white !important;
 }

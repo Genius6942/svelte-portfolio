@@ -1,8 +1,10 @@
-import { transformID } from "./../../../../lib/database/index";
-import { query } from "$lib/database";
 import { error } from "@sveltejs/kit";
-import { ObjectId } from "mongodb";
+
+import { query } from "$lib/database";
 import type { BlogPost } from "$lib/types";
+import { ObjectId } from "mongodb";
+
+import { transformID } from "./../../../../lib/database/index";
 
 export const load = async ({ params, locals }) => {
   const session = await locals.auth();
@@ -21,7 +23,11 @@ export const load = async ({ params, locals }) => {
     error(404, { message: "blog post not found :(" });
   }
 
+  const allPosts = await query<{ tags: string[] }>("blog", {}, { tags: 1, _id: 0 });
+  const tags = allPosts.map((post) => post.tags).flat();
+
   return {
-    post: transformID(data[0])
+    post: transformID(data[0]),
+    tags: [...tags]
   };
 };

@@ -7,7 +7,7 @@
 
   import { faGithub } from "@fortawesome/free-brands-svg-icons";
   import { faEnvelope, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons";
-  import { initBG } from "$lib/bg";
+  import { initBG } from "$lib/animations/bg";
 
   const links: { name: string; href: string; ref: null | HTMLAnchorElement }[] = [
     { name: "Home", href: "/", ref: null },
@@ -43,10 +43,16 @@
   page.subscribe(({ route: link }) => {
     if (!link || !link.id) return;
     route = link.id as string;
+    if (route.split("/").length >= 2) route = "/" + route.split("/")[1];
     calculatePositioning(route);
   });
   onMount(() => {
-    if ($page.route) calculatePositioning($page.route.id as string);
+    if ($page.route) {
+      if (!$page.route || !$page.route.id) return;
+      let route = $page.route.id as string;
+      if (route.split("/").length >= 2) route = "/" + route.split("/")[1];
+      calculatePositioning(route);
+    }
   });
 
   // bg thingy
@@ -101,26 +107,26 @@
   });
 </script>
 
-<div class="h-screen w-screen overflow-hidden flex flex-col text-white">
+<div class="flex h-screen w-screen flex-col overflow-hidden text-white">
   <div
-    class="px-5 py-[11px] flex items-center shadow-sm border-b-2 border-b-gray-600 bg-gray-800 z-50"
+    class="z-50 flex items-center border-b-2 border-b-gray-600 bg-gray-800 px-5 py-[11px] shadow-sm"
     id="header"
   >
     <a href="/" class="">HAELP</a>
-    <div class="ml-auto flex gap-3 relative" bind:this={navContainerRef}>
+    <div class="relative ml-auto flex gap-3" bind:this={navContainerRef}>
       {#each links as link}
         <a href={link.href} class="ml-3" bind:this={link.ref}>
           {link.name}
         </a>
       {/each}
       <div
-        class="h-1 absolute -bottom-3 bg-white rounded-full transition-all"
+        class="absolute -bottom-3 h-1 rounded-full bg-white transition-all"
         style={navBottomLeft !== null && navBottomWidth !== null
           ? `width: ${navBottomWidth}px; left: ${navBottomLeft}px; opacity: 1;`
           : "width: 0; left: 0; opacity: 0"}
       />
     </div>
-    <div class="mr-2 flex items-center gap-4 ml-8">
+    <div class="ml-8 mr-2 flex items-center gap-4">
       {#each icons as icon}
         <a href={icon.href} target="_blank">
           <Fa icon={icon.icon} scale={1.1} />
@@ -129,7 +135,7 @@
       {#if $page.data.session && $page.data.session.user}
         <div class="relative z-10 h-6 w-6">
           <button
-            class="w-6 h-6 rounded-full"
+            class="h-6 w-6 rounded-full"
             on:click={(e) => {
               menuOpen = !menuOpen;
               e.preventDefault();
@@ -141,11 +147,11 @@
           </button>
           {#if menuOpen}
             <div
-              class="absolute top-full right-0 mt-4 flex flex-col items-stretch bg-slate-900 rounded-2xl z-50"
+              class="absolute right-0 top-full z-50 mt-4 flex flex-col items-stretch rounded-2xl bg-slate-900"
             >
               <a
                 href="/account"
-                class="whitespace-nowrap px-3 py-2 cursor-pointer hover:bg-slate-700 flex items-center"
+                class="flex cursor-pointer items-center whitespace-nowrap px-3 py-2 hover:bg-slate-700"
               >
                 <Fa icon={faUser} class="mr-2" />
                 Account
@@ -153,7 +159,7 @@
               <div class="border-b-[1px] border-[#ffffff30]"></div>
               <a
                 href="/logout"
-                class="whitespace-nowrap px-3 py-2 cursor-pointer hover:bg-slate-700 flex items-center"
+                class="flex cursor-pointer items-center whitespace-nowrap px-3 py-2 hover:bg-slate-700"
               >
                 <Fa icon={faSignOut} class="mr-2" />
                 Log out
@@ -167,11 +173,11 @@
   <div class="flex-grow overflow-y-auto overflow-x-hidden bg-gray-700" id="main">
     <canvas
       bind:this={canvasRef}
-      class="absolute top-0 left-0 pointer-events-none"
+      class="pointer-events-none absolute left-0 top-0"
       id="background"
     />
     <div
-      class={"z-10 relative h-full " +
+      class={"relative z-10 h-full " +
         ($page.url.pathname.replaceAll("/", "") === "" ? "" : "backdrop-blur-md")}
     >
       <slot />

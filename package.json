@@ -25,12 +25,14 @@
     "@sveltejs/adapter-auto": "^3.1.1",
     "@sveltejs/kit": "^2.5.0",
     "@tailwindcss/typography": "^0.5.10",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@zerodevx/svelte-img": "^2.1.0",
     "autoprefixer": "^10.4.17",
     "mongodb": "^6.3.0",
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "prettier-plugin-svelte": "^3.1.2",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "sharp": "^0.33.2",
     "svelte": "^4.2.10",
     "svelte-check": "^3.6.3",
@@ -46,7 +48,10 @@
     "@auth/sveltekit": "^0.12.3",
     "@milkdown/plugin-clipboard": "^7.3.3",
     "@milkdown/plugin-indent": "^7.3.3",
+    "@milkdown/plugin-listener": "^7.3.3",
     "@milkdown/plugin-prism": "^7.3.3",
-    "@milkdown/plugin-upload": "^7.3.3"
+    "@milkdown/plugin-upload": "^7.3.3",
+    "prism-themes": "^1.9.0",
+    "svelte-tags-input": "^6.0.0"
   }
 }

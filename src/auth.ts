@@ -1,8 +1,9 @@
 import { SvelteKitAuth } from "@auth/sveltekit";
 import GitHub from "@auth/sveltekit/providers/github";
+
 import { GITHUB_ID, GITHUB_SECRET, GP } from "$env/static/private";
+import { database as databaseName, dbClient } from "$lib/database";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import { dbClient, database as databaseName } from "$lib/database";
 
 const adapter = MongoDBAdapter(dbClient, {
   databaseName

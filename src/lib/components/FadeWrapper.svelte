@@ -20,7 +20,7 @@
 <div
   class={className +
     " transition-all duration-1000 " +
-    (show ? "opacity-100 mt-0 mb-0" : "opacity-0 mt-12 -mb-12")}
+    (show ? "mb-0 mt-0 opacity-100" : "-mb-12 mt-12 opacity-0")}
   bind:this={ref}
 >
   <slot />
