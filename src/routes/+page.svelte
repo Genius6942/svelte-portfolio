@@ -21,6 +21,10 @@
   const scrollDown = () => firstItemRef.scrollIntoView({ behavior: "smooth" });
 </script>
 
+<svelte:head>
+	<title>haelp.dev</title>
+</svelte:head>
+
 <div class="relative h-screen">
   <canvas bind:this={canvasRef} class="-mt-6" />
   <div

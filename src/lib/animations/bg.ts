@@ -15,11 +15,11 @@ export const initBG = (canvas: HTMLCanvasElement) => {
     mousePos.y = e.clientY;
   });
 
-  const scale = window.innerWidth / 1350;
+  const scale = (window.innerWidth * window.innerHeight) / 10 ** 6;
   const gravity = -2;
   const initialSpeed = 0.5;
   const exitMargin = 150;
-  const mousePower = 1 / 20;
+  const mousePower = 1 / 30;
   let mouseControls = true;
 
   const dots: { x: number; y: number; r: number; vx: number; vy: number }[] = [];
