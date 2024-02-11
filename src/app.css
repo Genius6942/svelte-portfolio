@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  overflow: hidden;
+}
 
 body {
   position: relative;

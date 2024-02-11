@@ -51,7 +51,10 @@
     "@milkdown/plugin-listener": "^7.3.3",
     "@milkdown/plugin-prism": "^7.3.3",
     "@milkdown/plugin-upload": "^7.3.3",
+    "carbon-components-svelte": "^0.82.9",
     "prism-themes": "^1.9.0",
+    "prismjs": "^1.29.0",
+    "svelte-markdown": "^0.4.1",
     "svelte-tags-input": "^6.0.0"
   }
 }

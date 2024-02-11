@@ -2,21 +2,35 @@
   import { page } from "$app/stores";
   import Fa from "svelte-fa";
   import { faAdd, faSignIn } from "@fortawesome/free-solid-svg-icons";
+  import { onMount } from "svelte";
 
   export let data;
   const { tags } = data;
+  let width: number | null = null;
+  onMount(() => {
+    if (typeof window === "undefined") return;
+    width = window.innerWidth;
+    const handleResize = () => {
+      width = window.innerWidth;
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  });
 </script>
 
-<main class="relative flex h-full w-full items-stretch gap-5 overflow-auto p-20">
+<main class="relative flex h-full w-full items-stretch gap-5 overflow-auto overflow-x-hidden p-20">
   <!-- main content -->
-  <div class="relative flex-grow">
+  <div
+    class="relative flex-grow"
+    style={`max-width: ${typeof window !== undefined && width ? width - 240 - 80 * 2 - 20 * 2 : "none"}px`}
+  >
     <slot />
   </div>
 
   <div class="bg-slate-800"><div class="h-full w-1" /></div>
 
   <!-- Side panel -->
-  <div class="flex w-60 flex-col gap-8">
+  <div class="flex w-60 min-w-60 flex-col gap-8">
     <!-- login button -->
     {#if !$page.data.session || !$page.data.session.user}
       <a
