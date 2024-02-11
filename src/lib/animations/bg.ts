@@ -20,6 +20,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
   const initialSpeed = 0.5;
   const exitMargin = 150;
   const mousePower = 1 / 20;
+  let mouseControls = true;
 
   const dots: { x: number; y: number; r: number; vx: number; vy: number }[] = [];
   const numDots = 200 * scale;
@@ -67,14 +68,16 @@ export const initBG = (canvas: HTMLCanvasElement) => {
     }
 
     dots.forEach((dot) => {
-      // move dots slightly away from mouse exponentially decreasing with distance
-      const dx = dot.x - mousePos.x;
-      const dy = dot.y - mousePos.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < 100) {
-        const force = ((100 - distance) / 100) * mousePower;
-        dot.vx += dx * force * 0.01;
-        dot.vy += dy * force * 0.01;
+      if (mouseControls) {
+        // move dots slightly away from mouse exponentially decreasing with distance
+        const dx = dot.x - mousePos.x;
+        const dy = dot.y - mousePos.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100) {
+          const force = ((100 - distance) / 100) * mousePower;
+          dot.vx += dx * force * 0.01;
+          dot.vy += dy * force * 0.01;
+        }
       }
 
       // cap velocity
@@ -99,7 +102,15 @@ export const initBG = (canvas: HTMLCanvasElement) => {
   };
   requestAnimationFrame(render);
 
-  return () => {
-    looping = false;
+  return {
+    destroy: () => {
+      looping = false;
+    },
+    enableMouse: () => {
+      mouseControls = true;
+    },
+    disableMouse: () => {
+      mouseControls = false;
+    }
   };
 };

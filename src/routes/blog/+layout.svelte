@@ -7,7 +7,7 @@
   const { tags } = data;
 </script>
 
-<main class="relative flex h-full w-full items-stretch gap-5 p-20 overflow-auto">
+<main class="relative flex h-full w-full items-stretch gap-5 overflow-auto p-20">
   <!-- main content -->
   <div class="relative flex-grow">
     <slot />

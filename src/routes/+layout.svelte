@@ -40,11 +40,17 @@
     navBottomLeft = linkBounds.left - containerBounds.left;
     navBottomWidth = linkBounds.width;
   };
-  page.subscribe(({ route: link }) => {
-    if (!link || !link.id) return;
-    route = link.id as string;
-    if (route.split("/").length >= 2) route = "/" + route.split("/")[1];
-    calculatePositioning(route);
+
+  // bg thingy
+  let canvasRef = null as unknown as HTMLCanvasElement;
+  let bg: ReturnType<typeof initBG> | null = null;
+  onMount(() => {
+    bg = initBG(canvasRef);
+
+    // @ts-ignore
+    if (!import.meta.env.DEV) eruda.destroy();
+
+    return bg?.destroy;
   });
   onMount(() => {
     if ($page.route) {
@@ -52,18 +58,22 @@
       let route = $page.route.id as string;
       if (route.split("/").length >= 2) route = "/" + route.split("/")[1];
       calculatePositioning(route);
+
+      if (route === "/") {
+        if (bg) bg.enableMouse();
+      } else {
+        if (bg) bg.disableMouse();
+      }
     }
   });
+  page.subscribe(({ route: link }) => {
+    if (link.id === "/" && bg) bg.enableMouse();
+    else if (bg) bg.disableMouse();
 
-  // bg thingy
-  let canvasRef = null as unknown as HTMLCanvasElement;
-  onMount(() => {
-    const destroy = initBG(canvasRef);
-
-    // @ts-ignore
-    if (!import.meta.env.DEV) eruda.destroy();
-
-    return destroy;
+    if (!link || !link.id) return;
+    route = link.id as string;
+    if (route.split("/").length >= 2) route = "/" + route.split("/")[1];
+    calculatePositioning(route);
   });
 
   // view transitions stuff
@@ -178,7 +188,7 @@
     />
     <div
       class={"relative z-10 h-full " +
-        ($page.url.pathname.replaceAll("/", "") === "" ? "" : "backdrop-blur-md")}
+        ($page.url.pathname.replaceAll("/", "") === "" ? "" : "backdrop-blur-sm")}
     >
       <slot />
     </div>
