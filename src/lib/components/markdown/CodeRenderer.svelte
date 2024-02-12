@@ -2,7 +2,7 @@
   import CodeSnippet from "./CodeSnippet.svelte";
 
   import Prism from "prismjs";
-  import "../../styles/prism-one-dark.css";
+  import "../../../styles/prism-one-dark.css";
   import "prismjs/components/prism-json";
   import "prismjs/components/prism-bash";
   import "prismjs/components/prism-css";

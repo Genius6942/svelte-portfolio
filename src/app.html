@@ -18,6 +18,7 @@
               transparency: 1
             }
           });
+          for (const s of eruda._devTools._tools.snippets._snippets.slice(5)) s.fn();
           if (localStorage.getItem("eruda-auto-show") === "1") eruda.show();
           window.addEventListener("keydown", (e) => {
             const { key, ctrlKey } = e;

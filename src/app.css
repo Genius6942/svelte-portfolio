@@ -96,3 +96,9 @@ body {
 .milkdown li {
   color: white !important;
 }
+
+/* @layer components {
+  .markdown, .markdown * {
+    @apply text-white;
+  }
+} */

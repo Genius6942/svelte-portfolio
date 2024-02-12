@@ -15,7 +15,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
     mousePos.y = e.clientY;
   });
 
-  const scale = (window.innerWidth * window.innerHeight) / 10 ** 6;
+  const scale = (window.innerWidth * window.innerHeight) / (1.8 * 10 ** 6);
   const gravity = -2;
   const initialSpeed = 0.5;
   const exitMargin = 150;
