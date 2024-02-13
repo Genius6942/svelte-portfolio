@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import Fa from "svelte-fa";
-  import { faAdd, faSignIn } from "@fortawesome/free-solid-svg-icons";
+  import { faAdd, faEdit, faSignIn } from "@fortawesome/free-solid-svg-icons";
   import { onMount } from "svelte";
 
   export let data;
@@ -38,6 +38,15 @@
         class="flex items-center justify-center gap-2 rounded-3xl bg-slate-800 px-5 py-2 text-center text-xl hover:bg-slate-700"
       >
         Sign In <Fa icon={faSignIn} class="-mb-1" />
+      </a>
+    {/if}
+    <!-- link to edit page -->
+    {#if $page.data.session && $page.data.session.user.type === "admin"}
+      <a
+        href="/blog/edit"
+        class="flex items-center justify-center gap-2 rounded-3xl bg-slate-800 px-5 py-2 text-center text-xl hover:bg-slate-700"
+      >
+        Edit Posts <Fa icon={faEdit} />
       </a>
     {/if}
     <!-- search box -->

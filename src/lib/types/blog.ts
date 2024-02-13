@@ -1,4 +1,4 @@
-export interface BlogPost {
+export interface FullBlogPost {
   timestamp: Date;
   title: string;
   content: string;
@@ -7,3 +7,5 @@ export interface BlogPost {
   tags: string[];
   _id: string;
 }
+
+export type BlogPost<T extends keyof FullBlogPost = keyof FullBlogPost> = Pick<FullBlogPost, T>;

@@ -47,16 +47,23 @@ let connecting: boolean | Promise<MongoClient> = true;
   connecting = false;
 })();
 
-export const query = async <T = any>(
-  collection: string,
-  query: Filter<Document>,
-  projection: Document = {}
-) => {
+export const query = async <T = any>({
+  collection,
+  query = {},
+  projection = {},
+  sort = {}
+}: {
+  collection: string;
+  query?: Filter<Document>;
+  projection?: Document;
+  sort?: Document;
+}) => {
   if (connecting) await connecting;
   return (await client
     .db(database)
     .collection(collection)
     .find(query)
+    .sort(sort)
     .project(projection)
     .toArray()) as WithId<T>[];
 };
@@ -73,7 +80,7 @@ export const insert = async <T = any>(collection: string, doc: OptionalId<Docume
 
 export const updateOrInsert = async <T = any>(collection: string, search: any, set: any) => {
   if (connecting) await connecting;
-  const queryRes = await query(collection, search);
+  const queryRes = await query({ collection, query: search });
   if (queryRes.length > 0) {
     return await update<T>(collection, search, { $set: { ...set } });
   } else {

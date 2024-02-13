@@ -10,7 +10,7 @@ export const load = async ({ params }) => {
     error(404, { message: "blog post not found :(" });
   }
 
-  const data = await query<BlogPost>("blog", { _id: new ObjectId(params.postID) });
+  const data = await query<BlogPost>({collection: "blog", query: { _id: new ObjectId(params.postID) }});
 
   if (data.length <= 0) {
     error(404, { message: "blog post not found :(" });

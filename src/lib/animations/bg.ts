@@ -23,7 +23,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
   let mouseControls = true;
 
   const dots: { x: number; y: number; r: number; vx: number; vy: number }[] = [];
-  const numDots = 200 * scale;
+  const numDots = 200;
   for (let i = 0; i < numDots; i++) {
     dots.push({
       x: Math.random() * canvas.width,
@@ -34,7 +34,7 @@ export const initBG = (canvas: HTMLCanvasElement) => {
     });
   }
 
-  const connectionDistance = scale * 150;
+  const connectionDistance = scale * 225;
 
   let looping = true;
   const render = () => {

@@ -12,7 +12,10 @@ export const load = async ({ locals }) => {
   if (!session || !session.user || session.user.type !== "admin") {
     error(403, "Forbidden");
   }
-  const data = await query<{ _id: ObjectId; title: string }>("blog", {}, { title: 1, _id: 1 });
+  const data = await query<{ _id: ObjectId; title: string }>({
+    collection: "blog",
+    projection: { title: 1, _id: 1 }
+  });
 
   return {
     posts: data.map((item) => transformID(item))

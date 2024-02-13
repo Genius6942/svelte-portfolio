@@ -106,10 +106,13 @@
     <h1 class="firacode my-2 mr-auto text-4xl">Edit Post</h1>
     <div class="flex items-center gap-3">
       <button
+        on:click={() => {
+          post.published = !post.published;
+        }}
         class="flex items-center justify-center gap-2 rounded-full border-2 border-white px-3 py-1 hover:bg-slate-700"
       >
-        Publish
-        <Fa icon={faUpload} />
+        {post.published ? "Unpublish" : "Publish"}
+        <Fa icon={faUpload} class={post.published ? "rotate-180" : "rotate-0"} />
       </button>
       <button
         on:click={() => {
@@ -117,7 +120,7 @@
             fetch(`/blog/edit/${post._id}/update`, {
               method: "DELETE"
             }).then(() => {
-              goto("/blog");
+              goto("/blog/edit");
             });
           }
         }}

@@ -17,13 +17,16 @@ export const load = async ({ params, locals }) => {
     error(404, { message: "blog post not found :(" });
   }
 
-  const data = await query<BlogPost>("blog", { _id: new ObjectId(params.postID) });
+  const data = await query<BlogPost>({
+    collection: "blog",
+    query: { _id: new ObjectId(params.postID) }
+  });
 
   if (data.length <= 0) {
     error(404, { message: "blog post not found :(" });
   }
 
-  const allPosts = await query<{ tags: string[] }>("blog", {}, { tags: 1, _id: 0 });
+  const allPosts = await query<{ tags: string[] }>({ collection: "blog", query: { tags: 1 } });
   const tags = allPosts.map((post) => post.tags).flat();
 
   return {
