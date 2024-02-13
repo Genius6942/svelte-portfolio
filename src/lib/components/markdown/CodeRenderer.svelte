@@ -14,6 +14,9 @@
   import "prismjs/components/prism-powershell";
   import "prismjs/components/prism-scss";
   import "prismjs/components/prism-brainfuck";
+  import "prismjs/components/prism-python";
+	import "prismjs/components/prism-clike";
+	import "prismjs/components/prism-c";
 
   export let lang: string;
   export let text: string;
