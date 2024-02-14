@@ -39,4 +39,8 @@
       />
     </div>
   </div>
+
+	<!-- comments section -->
+
+	
 </div>

@@ -15,7 +15,8 @@ export const load = async ({ locals }) => {
     published: false,
     timestamp: new Date(),
     author: session.user.name,
-    tags: []
+    tags: [],
+		comments: []
   };
 
   const { insertedId } = await insert("blog", data);
